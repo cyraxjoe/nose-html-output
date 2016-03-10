@@ -32,11 +32,11 @@ setuptools.setup(
     author='Joel Rivera',
     author_email='rivera@joel.mx',
     url="https://github.com/cyraxjoe/nose-html-output",
+    download_url="https://github.com/cyraxjoe/nose-html-output/archive/%s.zip" % version,
     description="Nose plugin to produce test results in html.",
     version=version,
     long_description=longdesc,
     license="Apache License, Version 2.0",
-
     packages=["htmloutput"],
     install_requires=['nose'],
     classifiers=[
