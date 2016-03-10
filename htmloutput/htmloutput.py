@@ -35,7 +35,7 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
-
+import sys
 import datetime
 import os
 import traceback
@@ -44,8 +44,10 @@ from nose.plugins import Plugin
 import nose.plugins.skip
 from xml.sax import saxutils
 
-import version
+from . import  version
 __version__ = version.__version__
+
+py3k = not (sys.version_info[0] < 3)
 
 class TemplateData(object):
     """
@@ -491,6 +493,13 @@ class HtmlOutput(Plugin):
 
     def formatErr(self, err):
         exctype, value, tb = err
+        if py3k and isinstance(value, str):
+            if sys.version_info[1] < 5:
+                return ''.join(
+                    traceback.format_exception(exctype, value, tb,
+                                               chain=False))
+            else:
+                return ''.join(traceback.format_exception(exctype, None, tb))
         return ''.join(traceback.format_exception(exctype, value, tb))
 
     def setOutputStream(self, stream):
@@ -514,9 +523,15 @@ class HtmlOutput(Plugin):
         )
         if self.html_file:
             html_file = open(self.html_file, 'w')
-            html_file.write(output.encode('utf8'))
+            if py3k:
+                html_file.write(output)
+            else:
+                html_file.write(output.encode('utf8'))
         else:
-            stream.write(output.encode('utf8'))
+            if py3k:
+                stream.write(output)
+            else:
+                stream.write(output.encode('utf8'))
 
     def _getReportAttributes(self):
         """Return report attributes as a list of (name, value)."""
@@ -621,7 +636,7 @@ class HtmlOutput(Plugin):
             cls = test.test.__class__
         else:
             cls = test.__class__
-        if not rmap.has_key(cls):
+        if cls not in rmap:
             rmap[cls] = []
             classes.append(cls)
         rmap[cls].append(data_tuple)
@@ -639,13 +654,14 @@ class HtmlOutput(Plugin):
         # Comments below from the original source project.
         # TODO: clean this up within the context of a nose plugin.
         # o and e should be byte string because they are collected from stdout and stderr?
-        if isinstance(o,str):
+        if isinstance(o,str) and not py3k:
             # TODO: some problem with 'string_escape': it escape \n and mess up formating
             # uo = unicode(o.encode('string_escape'))
+            #uo = o.decode('latin-1')
             uo = o.decode('latin-1')
         else:
             uo = o
-        if isinstance(e,str):
+        if isinstance(e,str) and not py3k:
             # TODO: some problem with 'string_escape': it escape \n and mess up formating
             # ue = unicode(e.encode('string_escape'))
             ue = e.decode('latin-1')
