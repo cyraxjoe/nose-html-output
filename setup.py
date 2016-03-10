@@ -1,9 +1,6 @@
 import os
 import setuptools
 
-import htmloutput
-
-
 REPODIR = os.path.dirname(os.path.realpath(__file__))
 
 def _get_version(repodir):
@@ -18,7 +15,14 @@ def _get_version(repodir):
     return version
 
 def _get_longdesc(repodir):
-    return open(os.path.join(repodir, 'README.rst')).read()
+    readme = open(os.path.join(repodir, 'README.rst')).read()
+    changelog = open(os.path.join(repodir, 'CHANGES.rst')).read()
+    return ''.join([
+        readme, '\n\n',
+        'CHANGELOG\n',
+        '=========\n\n',
+        changelog
+    ])
 
 
 version = _get_version(REPODIR)
@@ -45,7 +49,7 @@ setuptools.setup(
     ],
     entry_points={
         'nose.plugins.0.10': [
-            'html-output = htmloutput.htmloutput:HtmlOutput'
+            'html-output = htmloutput:HtmlOutput'
         ]
     }
 )

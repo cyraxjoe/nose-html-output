@@ -1,1 +1,3 @@
-__version__ = '0.0.5'
+from .htmloutput import HtmlOutput
+
+__version__ = '1.0'
