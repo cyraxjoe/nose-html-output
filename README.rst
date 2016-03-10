@@ -6,8 +6,8 @@ A plugin for nosetests that will write out test results to results.html.
 The code is adapted from the `example html output plugin`_ and the
 `pyunit Html test runner`_.
 
-This is an alternative ``nosehtmloutput`` (hence the pypi name
-``alt-nose-html-output`` ) plugin that is not integrated to openstack.
+This is an alternative ``nosehtmloutput`` (pypi name: ``nosehtmloutput-2``)
+plugin that is not integrated to openstack.
 
 How to use it
 -------------

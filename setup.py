@@ -28,7 +28,7 @@ def _get_longdesc(repodir):
 version = _get_version(REPODIR)
 longdesc = _get_longdesc(REPODIR)
 setuptools.setup(
-    name="alt-nose-html-output",
+    name="nosehtmloutput-2",
     author='Joel Rivera',
     author_email='rivera@joel.mx',
     url="https://github.com/cyraxjoe/nose-html-output",
