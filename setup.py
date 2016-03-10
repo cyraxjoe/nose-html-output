@@ -5,7 +5,7 @@ REPODIR = os.path.dirname(os.path.realpath(__file__))
 
 def _get_version(repodir):
     version = 'UNKNOWN'
-    init = open(os.path.join(repodir, 'htmloutput', '__init__.py'))
+    init = open(os.path.join(repodir, 'htmloutput', 'htmloutput.py'))
     for line in init.readlines():
         if '__version__' in line and '=' in line:
             version = line.split('=')[-1].strip()

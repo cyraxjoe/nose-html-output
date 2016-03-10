@@ -39,18 +39,20 @@ import sys
 import datetime
 import os
 import traceback
+from xml.sax import saxutils
+
 from nose import SkipTest
 from nose.plugins import Plugin
 import nose.plugins.skip
-from xml.sax import saxutils
 
 
+__version__ = '1.0'
 
 py3k = not (sys.version_info[0] < 3)
 
 class TemplateData(object):
     """
-    Define a HTML template for report customerization and generation.
+    Define a HTML template for report customization and generation.
 
     Overall structure of an HTML report
 
