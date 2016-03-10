@@ -7,7 +7,7 @@ setuptools.setup(
     author='Hewlett-Packard Development Company, L.P.',
     description="Nose plugin to produce test results in html.",
     license="Apache License, Version 2.0",
-    url="https://git.openstack.org/cgit/openstack-infra/nose-html-output",
+    url="https://github.com/cyraxjoe/nose-html-output",
     packages=["htmloutput"],
     install_requires=['nose'],
     classifiers=[
