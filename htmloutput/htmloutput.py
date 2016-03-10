@@ -44,8 +44,7 @@ from nose.plugins import Plugin
 import nose.plugins.skip
 from xml.sax import saxutils
 
-from . import  version
-__version__ = version.__version__
+
 
 py3k = not (sys.version_info[0] < 3)
 

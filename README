@@ -1,9 +1,0 @@
-nose-html-output plugin
-=======================
-
-A plugin for nosetests that will write out test results to results.html.
-The code is adapted from the [example html output plugin][1] and the
-[pyunit Html test runner][2].
-
-[1]: https://github.com/nose-devs/nose/blob/master/examples/html_plugin/htmlplug.py
-[2]: http://tungwaiyip.info/software/HTMLTestRunner.html
